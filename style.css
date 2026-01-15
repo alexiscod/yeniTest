@@ -1,14 +1,12 @@
-/* Base styles */
 body, html {
   margin: 0;
   padding: 0;
   height: 100%;
   overflow: hidden;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  background: linear-gradient(135deg, #ffb3c1, #ffd1dc);
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* Center container */
 .container {
   position: relative;
   height: 100vh;
@@ -16,66 +14,56 @@ body, html {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 20px;
+  text-align: center;
 }
 
-/* Button */
-#startBtn {
+/* Start Button */
+button {
+  font-size: 1.5em;
   padding: 1em 2em;
-  font-size: 1.2em;
-  background-color: #ff66cc;
+  background: #ff66aa;
   border: none;
-  border-radius: 10px;
   color: white;
+  border-radius: 12px;
   cursor: pointer;
-  box-shadow: 0 0 10px #ff66cc;
-  transition: all 0.3s ease;
-  z-index: 5;
+  box-shadow: 0 0 15px #ff66aa;
+  transition: .3s;
+  z-index: 10;
 }
 
-#startBtn:hover {
-  background-color: #ff3385;
-  box-shadow: 0 0 20px #ff3385;
+button:hover {
+  background: #ff3388;
+  box-shadow: 0 0 25px #ff3388;
 }
 
-/* Hidden initially */
-.message, .hearts {
+/* Hidden by default */
+.hidden {
   opacity: 0;
-  transition: opacity 1s ease;
 }
 
-/* Show when activated */
-.show .message, .show .hearts {
+.show {
   opacity: 1;
+  transition: 1s;
 }
 
-/* Glowing message */
-.message {
-  font-size: 4em;
-  color: #fff;
-  text-shadow: 0 0 10px #fff, 0 0 20px #ff99cc, 0 0 30px #ff66cc;
-  animation: pulse 2s infinite;
-  z-index: 2;
-  margin-top: 20px;
-}
-
-/* Hearts container */
+/* Floating Hearts Background */
 .hearts {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  overflow: hidden;
-  z-index: 1;
+  top: 0;
+  left: 0;
+  z-index: 0;
 }
 
 .heart {
   position: absolute;
-  color: #ff5e8e;
   font-size: 24px;
+  color: #ff5e8e;
   animation: floatUp 6s linear infinite;
-  opacity: 0;
+  opacity: 0.8;
 }
 
 @keyframes floatUp {
@@ -92,8 +80,36 @@ body, html {
   }
 }
 
+/* Typewriter and Final Message */
+#typewriter, #finalMsg {
+  font-size: 2.5em;
+  color: #fff;
+  margin-top: 20px;
+  text-shadow: 0 0 10px #fff, 0 0 20px #ff99cc;
+  z-index: 5;
+}
+
+#finalMsg {
+  animation: pulse 2s infinite;
+}
+
 @keyframes pulse {
-  0% { text-shadow: 0 0 10px #fff, 0 0 20px #ff99cc, 0 0 30px #ff66cc; }
-  50% { text-shadow: 0 0 20px #fff, 0 0 30px #ff99cc, 0 0 40px #ff66cc; }
-  100% { text-shadow: 0 0 10px #fff, 0 0 20px #ff99cc, 0 0 30px #ff66cc; }
+  0%, 100% { text-shadow: 0 0 10px #fff, 0 0 20px #ff99cc; }
+  50% { text-shadow: 0 0 20px #fff, 0 0 30px #ff66cc; }
+}
+
+/* Mobile Optimization */
+@media (max-width: 600px) {
+  #typewriter, #finalMsg {
+    font-size: 1.8em;
+  }
+
+  button {
+    font-size: 1.2em;
+    padding: 0.8em 1.5em;
+  }
+
+  .heart {
+    font-size: 20px;
+  }
 }
